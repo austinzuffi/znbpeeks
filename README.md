@@ -29,6 +29,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Deploy to GitHub Pages
 
-Run `ng build` to update the `dist/` directory
-commit
-`git subtree push --prefix dist origin gh-pages`(https://gist.github.com/cobyism/4730490).
+Run `ng build -op docs` to update the `docs/` directory that gh pages sources
