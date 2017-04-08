@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col pl-0 pr-0">
+        <ngb-alert *ngIf="!staticAlertClosed" (close)="closeAlert()">
+            {{instructs}}
+        </ngb-alert>
+        <ngb-carousel #myCarousel id={{directory}}>
+            <template ngbSlide *ngFor="let what of whatList">
+                <img class="mx-auto mw-100" [src]=what>
+            </template>
+        </ngb-carousel>
+    </div>
+</div>
+
