@@ -9,9 +9,9 @@
     </a>
 
     <div [ngbCollapse]="isCollapsed" (click)="isCollapsed = true" class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item " *ngFor="let key of whatKeys">
-                <a class="nav-link" routerLink="/{{key}}" routerLinkActive="active">{{key}}</a>
+        <ul class="navbar-nav mr-auto" *ngIf="whatObs | async as whatKeys">
+            <li class="nav-item " *ngFor="let key of whatKeys | jason">
+                <a class="nav-link" routerLink="/{{key | what}}" routerLinkActive="active">{{key | what}}</a>
             </li>
         </ul>
     </div>

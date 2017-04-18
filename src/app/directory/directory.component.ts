@@ -16,7 +16,6 @@ export class DirectoryComponent implements OnInit, AfterViewInit {
     staticAlertClosed = false;
 
     public directory: string;
-    public errorMessage: string;
     public instructs: string;
     public whatObs: Observable<Response>;
 
