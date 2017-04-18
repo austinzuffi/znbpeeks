@@ -1,14 +1,16 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { WhatService } from '../what.service';
 import { Response } from '@angular/http';
 import { NgbCarouselConfig, NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
+import {Observable} from "rxjs";
 
 @Component({
     selector: 'app-directory',
     templateUrl: './directory.component.html',
     styleUrls: ['./directory.component.css'],
-    providers: [WhatService, NgbCarouselConfig, NgbAlertConfig]
+    providers: [WhatService, NgbCarouselConfig, NgbAlertConfig],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DirectoryComponent implements OnInit, AfterViewInit {
     staticAlertClosed = false;
@@ -19,6 +21,7 @@ export class DirectoryComponent implements OnInit, AfterViewInit {
     public whatResponse: Response;
     public whatList: Array<string> = [];
     public instructs: string;
+    public whatObs: Observable<Response>;
 
     constructor(
         private route: ActivatedRoute,
@@ -44,21 +47,6 @@ export class DirectoryComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         // TODO: autofocus carousel for keyboard navigation
-        /*    var startX, endX;
-         var carousel = this.carousel;
-         console.log(this.carousel);
-         document.addEventListener("dragstart", function (event) {
-         startX = event.screenX;
-         });
-         document.addEventListener("dragend", function (event) {
-         endX = event.screenX;
-         if ((startX - endX) > 0) {
-         carousel.next();
-         }
-         else {
-         carousel.prev();
-         }
-         });*/
     }
 
     closeAlert() {
@@ -66,26 +54,7 @@ export class DirectoryComponent implements OnInit, AfterViewInit {
     }
 
     getWhat() {
-        this.whatService.getWhat(this.directory)
-            .subscribe(
-                whats => this.whatResponse = whats,
-                error => this.errorMessage = error,
-                () => {
-                    this.scourWhat();
-                }
-            );
-    }
-
-    scourWhat() {
-        const whats = this.whatResponse.json();
-        for (let i = 0; i < whats.length; i++) {
-            const what = whats[i];
-            const whatType = what.type;
-            const whatName = what.name;
-            if (whatType === 'file') {
-                this.whatList.push(this.whatResponse.url + whatName);
-            }
-        }
+        this.whatObs = this.whatService.getWhat(this.directory);
     }
 }
 

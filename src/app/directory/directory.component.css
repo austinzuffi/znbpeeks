@@ -1,5 +1,11 @@
 img {
-    object-fit: contain;
-    max-height:100vh;
+/*    object-fit: contain;
+    max-height:100vh;*/
+    transition: opacity 1s;
+    opacity: 0;
+}
+
+img.ng-lazyloaded {
+    opacity: 1;
 }
 
