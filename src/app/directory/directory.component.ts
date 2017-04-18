@@ -9,8 +9,8 @@ import {Observable} from "rxjs";
     selector: 'app-directory',
     templateUrl: './directory.component.html',
     styleUrls: ['./directory.component.css'],
-    providers: [WhatService, NgbAlertConfig],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    providers: [WhatService, NgbAlertConfig]
+    // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DirectoryComponent implements OnInit, AfterViewInit {
     staticAlertClosed = false;
