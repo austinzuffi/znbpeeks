@@ -29,4 +29,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Deploy to GitHub Pages
 
-Run `ng build -op docs` to update the `docs/` directory that gh pages sources
+Run `ng build -op docs` to update the `docs/` directory <-- source of gh pages 
+Push it reel good: `git push`
